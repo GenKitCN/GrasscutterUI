@@ -26,16 +26,12 @@ Public Declare Sub CoTaskMemFree Lib "ole32.dll" (ByVal pv As Long)
 Public Declare Sub InitCommonControls Lib "comctl32.dll" ()
 Public Sub FirstInit()
     HandbookFile = GetIni("GCUI", "HandbooKFile", App.Path & "\Config.ini")
-    MsgBox 1
-    MsgBox HandbookFile
     If HandbookFile = "" Then
         Do While HandbookFile = ""
-        MsgBox 1
             HandbookFile = ChooseFile("选择 Handbook 文件（本程序自带）", "Handbook", "*.txt", frmMain)
         Loop
         WriteIni "GCUI", "HandbookFile", HandbookFile, App.Path & "\Config.ini"
     End If
-MsgBox 2
     ServerFile = GetIni("GCUI", "ServerFile", App.Path & "\Config.ini")
     If ServerFile = "" Then
         Do While ServerFile = ""
