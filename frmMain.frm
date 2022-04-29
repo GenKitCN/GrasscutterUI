@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{A2A736C2-8DAC-4CDB-B1CB-3B077FBB14F9}#6.2#0"; "VB6Resizer2.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H80000005&
-   Caption         =   "Grasscutter UI"
+   Caption         =   "生草机"
    ClientHeight    =   5640
    ClientLeft      =   60
    ClientTop       =   405
    ClientWidth     =   8655
    BeginProperty Font 
       Name            =   "微软雅黑"
-      Size            =   10.5
+      Size            =   9
       Charset         =   134
       Weight          =   400
       Underline       =   0   'False
@@ -21,38 +21,37 @@ Begin VB.Form frmMain
    ScaleHeight     =   5640
    ScaleWidth      =   8655
    StartUpPosition =   3  '窗口缺省
-   Begin VB.CommandButton cmdGive 
-      Caption         =   "给予物品"
+   Begin VB.TextBox txtUID 
       BeginProperty Font 
-         Name            =   "微软雅黑"
+         Name            =   "Consolas"
          Size            =   9
-         Charset         =   134
+         Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      Height          =   330
+      Left            =   600
+      TabIndex        =   8
+      Text            =   "Text1"
+      Top             =   4290
+      Width           =   1335
+   End
+   Begin VB.CommandButton cmdGive 
+      Caption         =   "给予物品"
       Height          =   375
       Left            =   1080
       TabIndex        =   6
-      Top             =   600
+      Top             =   840
       Width           =   855
    End
    Begin VB.CommandButton cmdSpawn 
       Caption         =   "生成敌怪"
-      BeginProperty Font 
-         Name            =   "微软雅黑"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Left            =   120
       TabIndex        =   5
-      Top             =   600
+      Top             =   840
       Width           =   855
    End
    Begin VB.TextBox txtMITMProxy 
@@ -108,6 +107,15 @@ Begin VB.Form frmMain
    End
    Begin VB.CommandButton cmdStart 
       Caption         =   "启动服务器"
+      BeginProperty Font 
+         Name            =   "微软雅黑"
+         Size            =   10.5
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   120
       TabIndex        =   0
@@ -121,6 +129,25 @@ Begin VB.Form frmMain
       _ExtentX        =   529
       _ExtentY        =   529
    End
+   Begin VB.Label Label3 
+      BackStyle       =   0  'Transparent
+      Caption         =   "UID:"
+      Height          =   495
+      Left            =   120
+      TabIndex        =   9
+      Top             =   4320
+      Width           =   1455
+   End
+   Begin VB.Label Label2 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "Grasscutter UI"
+      Height          =   495
+      Left            =   120
+      TabIndex        =   7
+      Top             =   500
+      Width           =   1815
+   End
    Begin GrasscutterUI.ShellPipe ShellIConv 
       Left            =   600
       Top             =   1800
@@ -130,7 +157,7 @@ Begin VB.Form frmMain
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Grasscutter"
+      Caption         =   "生草机"
       BeginProperty Font 
          Name            =   "微软雅黑"
          Size            =   14.25
@@ -187,6 +214,10 @@ Private Sub chkProxy_Click()
         ProxyEnabled = False
         MsgBox "系统代理关闭成功！"
     End If
+End Sub
+
+Private Sub cmdGive_Click()
+    frmOperate.TriggerGive
 End Sub
 
 Private Sub cmdSpawn_Click()
@@ -277,10 +308,13 @@ Private Sub MITMDump_DataArrival(ByVal CharsTotal As Long)
 End Sub
 
 Private Sub Form_Initialize()
+    Me.Caption = "生草机 " & App.Major & "." & App.Minor & "." & App.Revision
     txtLog.Visible = True
     txtMITMProxy.Visible = False
     ServerStarted = False
     txtLog.Text = "欢迎来到 Grasscutter，请点击启动服务器。"
+    txtUID.Text = GetIni("GCUI", "PlayerUID", App.Path & "\Config.ini")
+    If txtUID.Text = "" Then txtUID.Text = "10001"
     FirstInit
     LoadHandbook
 End Sub
@@ -325,4 +359,8 @@ On Error Resume Next
     Next
     Debug.Print "字典加载完毕"
     HandbookLoaded = True
+End Sub
+
+Private Sub txtUID_Change()
+        WriteIni "GCUI", "PlayerUID", txtUID.Text, App.Path & "\Config.ini"
 End Sub

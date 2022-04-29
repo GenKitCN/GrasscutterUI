@@ -23,7 +23,7 @@ Public Sub FirstInit()
     HandbookFile = GetIni("GCUI", "HandbooKFile", App.Path & "\Config.ini")
     If HandbookFile = "" Then
         Do While HandbookFile = ""
-            HandbookFile = ChooseFile("选择 Handbook 文件", "Handbook", "*.txt", frmMain)
+            HandbookFile = ChooseFile("选择 Handbook 文件（本程序自带）", "Handbook", "*.txt", frmMain)
         Loop
         WriteIni "GCUI", "HandbookFile", HandbookFile, App.Path & "\Config.ini"
     End If
