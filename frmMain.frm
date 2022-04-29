@@ -1,5 +1,6 @@
 VERSION 5.00
 Object = "{A2A736C2-8DAC-4CDB-B1CB-3B077FBB14F9}#6.2#0"; "VB6Resizer2.ocx"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form frmMain 
    BackColor       =   &H80000005&
    Caption         =   "Éú²Ý»ú"
@@ -21,6 +22,100 @@ Begin VB.Form frmMain
    ScaleHeight     =   5640
    ScaleWidth      =   8655
    StartUpPosition =   3  '´°¿ÚÈ±Ê¡
+   Begin VB.CommandButton cmdDrop 
+      Caption         =   "µôÂäÎïÆ·"
+      Height          =   375
+      Left            =   1080
+      TabIndex        =   18
+      Top             =   1320
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdList 
+      Caption         =   "µ±Ç°ÔÚÏß"
+      Height          =   375
+      Left            =   1080
+      TabIndex        =   17
+      Top             =   2280
+      Width           =   855
+   End
+   Begin VB.TextBox txtConsole 
+      BeginProperty Font 
+         Name            =   "Î¢ÈíÑÅºÚ"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
+      Left            =   120
+      TabIndex        =   16
+      Text            =   "Ö´ÐÐÃüÁî..."
+      Top             =   3840
+      Width           =   1815
+   End
+   Begin VB.CommandButton cmdChar 
+      Caption         =   "¸øÓè½ÇÉ«"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   15
+      Top             =   1320
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdStats 
+      Caption         =   "ÐÞ¸ÄÊýÖµ"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   14
+      Top             =   1800
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdKillAll 
+      Caption         =   "Çå³ýµÐ¹Ö"
+      Height          =   375
+      Left            =   1080
+      TabIndex        =   13
+      Top             =   1800
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdScene 
+      Caption         =   "³¡¾°´«ËÍ"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   12
+      Top             =   2280
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdAccount 
+      Caption         =   "ÕËºÅ²Ù×÷"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   11
+      Top             =   3360
+      Width           =   855
+   End
+   Begin VB.CommandButton cmdSettings 
+      Caption         =   "ÉèÖÃ"
+      Height          =   375
+      Left            =   1080
+      TabIndex        =   10
+      Top             =   3360
+      Width           =   855
+   End
+   Begin RichTextLib.RichTextBox txtLog 
+      Height          =   5415
+      Left            =   2040
+      TabIndex        =   9
+      ToolTipText     =   "ÓÒ¼üµã»÷ÇÐ»»Îª MITMProxy ÈÕÖ¾"
+      Top             =   120
+      Width           =   6495
+      _ExtentX        =   11456
+      _ExtentY        =   9551
+      _Version        =   393217
+      Enabled         =   -1  'True
+      TextRTF         =   $"frmMain.frx":514A
+   End
    Begin VB.TextBox txtUID 
       BeginProperty Font 
          Name            =   "Consolas"
@@ -33,7 +128,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   330
       Left            =   600
-      TabIndex        =   8
+      TabIndex        =   7
       Text            =   "Text1"
       Top             =   4290
       Width           =   1335
@@ -42,7 +137,7 @@ Begin VB.Form frmMain
       Caption         =   "¸øÓèÎïÆ·"
       Height          =   375
       Left            =   1080
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   840
       Width           =   855
    End
@@ -50,7 +145,7 @@ Begin VB.Form frmMain
       Caption         =   "Éú³ÉµÐ¹Ö"
       Height          =   375
       Left            =   120
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   840
       Width           =   855
    End
@@ -68,7 +163,7 @@ Begin VB.Form frmMain
       Left            =   2040
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   3
+      TabIndex        =   2
       Tag             =   "HW"
       ToolTipText     =   "ÓÒ¼üµã»÷ÇÐ»»Îª Grasscutter ÈÕÖ¾"
       Top             =   120
@@ -79,31 +174,10 @@ Begin VB.Form frmMain
       Caption         =   "ÆôÓÃ´úÀí"
       Height          =   300
       Left            =   120
-      TabIndex        =   2
+      TabIndex        =   1
       Tag             =   "T"
       Top             =   4680
       Width           =   1575
-   End
-   Begin VB.TextBox txtLog 
-      BeginProperty Font 
-         Name            =   "Consolas"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   5415
-      Left            =   2040
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
-      TabIndex        =   1
-      Tag             =   "HW"
-      Text            =   "frmMain.frx":514A
-      ToolTipText     =   "ÓÒ¼üµã»÷ÇÐ»»Îª MITMProxy ÈÕÖ¾"
-      Top             =   120
-      Width           =   6495
    End
    Begin VB.CommandButton cmdStart 
       Caption         =   "Æô¶¯·þÎñÆ÷"
@@ -134,7 +208,7 @@ Begin VB.Form frmMain
       Caption         =   "UID:"
       Height          =   495
       Left            =   120
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   4320
       Width           =   1455
    End
@@ -144,7 +218,7 @@ Begin VB.Form frmMain
       Caption         =   "Grasscutter UI"
       Height          =   495
       Left            =   120
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   500
       Width           =   1815
    End
@@ -169,7 +243,7 @@ Begin VB.Form frmMain
       EndProperty
       Height          =   495
       Left            =   120
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   120
       Width           =   1815
    End
@@ -216,8 +290,42 @@ Private Sub chkProxy_Click()
     End If
 End Sub
 
+Private Sub cmdChar_Click()
+    If ServerStarted Then frmOperate.TriggerChar
+End Sub
+
+Private Sub cmdDrop_Click()
+    frmOperate.TriggerDrop
+End Sub
+
+Private Sub cmdList_Click()
+    If ServerStarted Then Server.SendLine "!list"
+    MsgBox "Çë¿´ÈÕÖ¾¡£"
+End Sub
+
+Private Sub cmdStats_Click()
+    frmOperate.TriggerStats
+End Sub
+
 Private Sub cmdGive_Click()
     frmOperate.TriggerGive
+End Sub
+
+Private Sub cmdAccount_Click()
+    If ServerStarted Then frmOperate.TriggerAccount
+End Sub
+
+Private Sub cmdKillAll_Click()
+    If ServerStarted Then Server.SendLine "!killall " & txtUID.Text
+    MsgBox "ÒÑ¾­Çå³ý " & txtUID.Text & " ËùÔÚ³¡¾°µÄÈ«²¿µÐ¹Ö¡£"
+End Sub
+
+Private Sub cmdScene_Click()
+    frmOperate.TriggerScene
+End Sub
+
+Private Sub cmdSettings_Click()
+frmSettings.Show
 End Sub
 
 Private Sub cmdSpawn_Click()
@@ -227,7 +335,7 @@ End Sub
 Private Sub cmdStart_Click()
     If ServerStarted = False Then
         cmdStart.Caption = "Í£Ö¹·þÎñÆ÷"
-        txtLog.Text = ""
+        txtLog.TextRTF = ""
         txtMITMProxy.Text = ""
         '¿ªmongodb
         If Dir(ServerFolder & "\Database", vbDirectory) = "" Then MkDir ServerFolder & "\Database"
@@ -256,6 +364,7 @@ Private Sub cmdStart_Click()
         ServerStarted = False
     End If
 End Sub
+
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     Server.ClosePipe
@@ -289,10 +398,17 @@ Private Sub Form_Unload(Cancel As Integer)
     End
 End Sub
 
+'´òÓ¡ÈÕÖ¾
 Private Sub Server_DataArrival(ByVal CharsTotal As Long)
+Dim txt As String, txtOrig As String
     With Server
         Do While .HasLine
-            txtLog.Text = txtLog.Text & .GetLine() & vbCrLf
+            txt = Replace(Replace(.GetLine(), "[[34m", "\cf1 "), "[0;39m]", "\cf0 ")
+            txtOrig = txtLog.TextRTF
+            If Len(txtOrig) > (LogCount + 2) Then
+            txtOrig = Right(txtOrig, LogCount)
+            End If
+            txtLog.TextRTF = RTF_HEADER & txtOrig & txt & "\par" & vbCrLf & "}"
             If txtLog.Visible Then txtLog.SelStart = &HFFFF&
         Loop
     End With
@@ -301,32 +417,45 @@ End Sub
 Private Sub MITMDump_DataArrival(ByVal CharsTotal As Long)
     With MITMDump
         Do While .HasLine
-            txtMITMProxy.Text = txtMITMProxy.Text & .GetLine() & vbCrLf
+            txtMITMProxy.Text = Right(txtMITMProxy.Text, LogCount) & .GetLine() & vbCrLf
             If txtMITMProxy.Visible Then txtMITMProxy.SelStart = &HFFFF&
         Loop
     End With
 End Sub
 
 Private Sub Form_Initialize()
+    InitCommonControls
     Me.Caption = "Éú²Ý»ú " & App.Major & "." & App.Minor & "." & App.Revision
     txtLog.Visible = True
     txtMITMProxy.Visible = False
     ServerStarted = False
-    txtLog.Text = "»¶Ó­À´µ½ Grasscutter£¬Çëµã»÷Æô¶¯·þÎñÆ÷¡£"
+    txtLog.Text = TXT_HEADER_1
     txtUID.Text = GetIni("GCUI", "PlayerUID", App.Path & "\Config.ini")
     If txtUID.Text = "" Then txtUID.Text = "10001"
     FirstInit
     LoadHandbook
 End Sub
 
-Private Sub txtLog_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+
+Private Sub txtConsole_Click()
+    If txtConsole.Text = "Ö´ÐÐÃüÁî..." Then txtConsole.Text = ""
+End Sub
+
+Private Sub txtConsole_KeyPress(KeyAscii As Integer)
+    If KeyAscii = 13 Then
+        Server.SendLine txtConsole.Text
+        txtConsole.Text = ""
+    End If
+End Sub
+
+Private Sub txtLog_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Button = 2 Then
         txtMITMProxy.Visible = True
         txtLog.Visible = False
     End If
 End Sub
 
-Private Sub txtMITMProxy_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub txtMITMProxy_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Button = 2 Then
         txtMITMProxy.Visible = False
         txtLog.Visible = True

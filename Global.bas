@@ -7,18 +7,23 @@ Public MitmProxyFile As String    'mitmproxy.py
 Public JREFile As String    'jre.exe | java.exe | jdk.exe
 Public ServerFolder As String    '服务器所在文件夹
 
-Public OrigProxyEnable As Integer
-Public OrigProxyServer As String
-Public ProxyEnabled As Boolean
-Public ServerStarted As Boolean
+Public LogCount As String    '日志保留字符数
 
-Public Handbook As New Dictionary
-Public HandbookLoaded As Boolean
+Public OrigProxyEnable As Integer '原始系统代理
+Public OrigProxyServer As String '原始系统代理
+Public ProxyEnabled As Boolean '系统代理是否开启
+Public ServerStarted As Boolean '割草机是否开启
+
+Public Handbook As New Dictionary '手册
+Public HandbookLoaded As Boolean '手册是否加载
 
 Public Const YH As String = """"
+Public Const TXT_HEADER_1 As String = vbCrLf & "  所谓薙刀，乃是斩除芜杂之利器。" & vbCrLf & "  秉薙刀之人，意在守护恒常之道。" & vbCrLf & vbCrLf & "  当高踞雷云之上者俯视她所倾心的凡世，" & vbCrLf & "  所见无不浅薄的争端，闪灭的执欲泡影…" & vbCrLf & "  争夺源于无谓爱执与狂欲，乃恒世之敌。" & vbCrLf & "  搅扰不变恒世的杂草，将交由雷光殛灭。" & vbCrLf & vbCrLf & "  既然谁人都无法逆转现世之无常、绪绝的独乐，" & vbCrLf & "  那就将心中的常世净土带到她所珍爱的国度吧。" & vbCrLf & vbCrLf & "  -- 生草机 (Grasscutter UI) By YidaozhanYa"
+Public Const RTF_HEADER As String = "{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Consolas;}}{\colortbl ;\red0\green176\blue80;}\pard\sl240\slmult1\f0\fs20\lang2052 "
 
 Public Declare Function SysReAllocString Lib "oleaut32.dll" (ByVal pBSTR As Long, Optional ByVal pszStrPtr As Long) As Long
 Public Declare Sub CoTaskMemFree Lib "ole32.dll" (ByVal pv As Long)
+Public Declare Sub InitCommonControls Lib "comctl32.dll" ()
 Public Sub FirstInit()
     HandbookFile = GetIni("GCUI", "HandbooKFile", App.Path & "\Config.ini")
     If HandbookFile = "" Then
@@ -75,6 +80,14 @@ Public Sub FirstInit()
         Loop
         WriteIni "GCUI", "JREFile", JREFile, App.Path & "\Config.ini"
     End If
+    
+    If GetIni("GCUI", "LogCount", App.Path & "\Config.ini") = "" Then
+        LogCount = 10000
+        WriteIni "GCUI", "LogCount", "10000", App.Path & "\Config.ini"
+    Else
+        LogCount = CInt(GetIni("GCUI", "LogCount", App.Path & "\Config.ini"))
+    End If
+    
 End Sub
 
 

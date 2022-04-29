@@ -1,13 +1,23 @@
-﻿# GrasscutterUI 
+﻿# 生草机
 
-割草机启动器
+Grasscutter UI -- [割草机](https://github.com/Grasscutters/Grasscutter)的启动器和控制台
 
 #### 如何编译
 
-需求
+系统需求
 
+- Windows XP 及以上
 - Visual Basic 6 IDE (SP6)
-- GNU iconv.exe
-- 中文版物品 ID 手册（Genshin Impact PS™ Handbook）
 
-编译之后把 iconv.exe 和手册丢进去就行了
+VB6 模块
+
+- oleexp.tlb
+- VB6 Resizer 2
+
+其它需求
+
+- GNU iconv.exe
+
+
+
+编译之后把 iconv.exe 丢进去就行了，也可以用 Make-My-Manifest 生成 manifest 以打包所需的控件
