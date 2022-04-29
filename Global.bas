@@ -26,13 +26,16 @@ Public Declare Sub CoTaskMemFree Lib "ole32.dll" (ByVal pv As Long)
 Public Declare Sub InitCommonControls Lib "comctl32.dll" ()
 Public Sub FirstInit()
     HandbookFile = GetIni("GCUI", "HandbooKFile", App.Path & "\Config.ini")
+    MsgBox 1
+    MsgBox HandbookFile
     If HandbookFile = "" Then
         Do While HandbookFile = ""
+        MsgBox 1
             HandbookFile = ChooseFile("选择 Handbook 文件（本程序自带）", "Handbook", "*.txt", frmMain)
         Loop
         WriteIni "GCUI", "HandbookFile", HandbookFile, App.Path & "\Config.ini"
     End If
-
+MsgBox 2
     ServerFile = GetIni("GCUI", "ServerFile", App.Path & "\Config.ini")
     If ServerFile = "" Then
         Do While ServerFile = ""
@@ -106,7 +109,7 @@ Public Sub WriteIni(strSection As String, strKey As String, strNewValue As Strin
     End With
 End Sub
 
-Public Function ChooseFile(ByVal frmTitle As String, ByVal fileDescription As String, ByVal fileFilter As String, ByVal onForm As Variant) As String
+Public Function ChooseFile(ByVal frmTitle As String, ByVal fileDescription As String, ByVal fileFilter As String, ByVal onForm As Object) As String
 'oleexp 选择文件
     On Error Resume Next
     Dim pChoose As New FileOpenDialog
@@ -120,7 +123,7 @@ Public Function ChooseFile(ByVal frmTitle As String, ByVal fileDescription As St
         .SetFileTypes UBound(tFilt) + 1, VarPtr(tFilt(0))
         .SetTitle frmTitle
         .SetOptions FOS_FILEMUSTEXIST + FOS_DONTADDTORECENT
-        .Show onForm
+        .Show onForm.hWnd
         .GetResult psiResult
         If (psiResult Is Nothing) = False Then
             psiResult.GetDisplayName SIGDN_FILESYSPATH, lpPath
