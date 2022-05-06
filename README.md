@@ -21,3 +21,5 @@ VB6 模块
 
 
 编译之后把 iconv.exe 丢进去就行了，也可以用 Make-My-Manifest 生成 manifest 以打包所需的控件
+
+本仓库已经弃坑，欢迎大家提交 pr 或自行分支！
